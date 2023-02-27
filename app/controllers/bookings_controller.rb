@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   def index
-    @bookings = Booking.where(current_user == :user_id)
+    @bookings = Booking.where(current_user == params[:user_id])
   end
 
   def new
@@ -12,12 +12,11 @@ class BookingsController < ApplicationController
     @shoe = Shoe.find(params[:id])
     @booking.shoe = @shoe
     if @booking.save
-      redirect_to shoes_path
+      redirect_to bookings_index_path
     else
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 
