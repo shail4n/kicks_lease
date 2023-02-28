@@ -33,4 +33,8 @@ class ShoesController < ApplicationController
     @shoe.destroy
     redirect_to shoe_path, status: :see_other
   end
+
+  def shoe_params
+    params.require(@shoe).permit(:title, :description, :price, :sizes, :photo)
+  end
 end
